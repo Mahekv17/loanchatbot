@@ -32,6 +32,15 @@ const Apply = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const loanTypes = [
+    { id: "personal", label: "Personal Loan", icon: "💰" },
+    { id: "home", label: "Home Loan", icon: "🏠" },
+    { id: "auto", label: "Auto Loan", icon: "🚗" },
+    { id: "education", label: "Education Loan", icon: "🎓" },
+    { id: "business", label: "Business Loan", icon: "💼" },
+    { id: "gold", label: "Gold Loan", icon: "🪙" },
+  ];
+
   useEffect(() => {
     const user = getStoredUser();
     if (!user) {
@@ -105,6 +114,10 @@ const Apply = () => {
   const handleLoanType = (type: string) => {
     const loanType = type.toLowerCase().includes("personal") ? "Personal" 
                    : type.toLowerCase().includes("home") ? "Home" 
+                   : type.toLowerCase().includes("auto") ? "Auto"
+                   : type.toLowerCase().includes("education") ? "Education"
+                   : type.toLowerCase().includes("business") ? "Business"
+                   : type.toLowerCase().includes("gold") ? "Gold"
                    : "Personal";
     
     setLoanData({ ...loanData, type: loanType });
@@ -409,7 +422,7 @@ const Apply = () => {
   };
 
   const quickReplies = currentStep === "loanType" 
-    ? ["Personal Loan", "Home Loan", "Auto Loan"]
+    ? loanTypes.map(lt => lt.label)
     : currentStep === "amount"
     ? ["₹100,000", "₹200,000", "₹500,000"]
     : currentStep === "tenure"

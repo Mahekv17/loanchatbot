@@ -28,5 +28,95 @@
     "tenure": [120, 180, 240, 300, 360],
     "processingFee": 0.5,
     "features": ["Low interest rate", "Tax benefits", "Long tenure"]
+  },
+  {
+    "id": "OFFER004",
+    "loanType": "Home",
+    "minAmount": 1000000,
+    "maxAmount": 50000000,
+    "interestRate": 8.0,
+    "tenure": [180, 240, 300, 360],
+    "processingFee": 0.3,
+    "features": ["Premium properties", "Best rates", "No prepayment charges"]
+  },
+  {
+    "id": "OFFER005",
+    "loanType": "Auto",
+    "minAmount": 100000,
+    "maxAmount": 2000000,
+    "interestRate": 9.5,
+    "tenure": [12, 24, 36, 48, 60],
+    "processingFee": 1.5,
+    "features": ["New & used cars", "Quick approval", "90% financing"]
+  },
+  {
+    "id": "OFFER006",
+    "loanType": "Auto",
+    "minAmount": 300000,
+    "maxAmount": 5000000,
+    "interestRate": 9.0,
+    "tenure": [24, 36, 48, 60, 84],
+    "processingFee": 1.0,
+    "features": ["Luxury vehicles", "Extended tenure", "100% on-road price"]
+  },
+  {
+    "id": "OFFER007",
+    "loanType": "Education",
+    "minAmount": 50000,
+    "maxAmount": 1000000,
+    "interestRate": 8.5,
+    "tenure": [12, 24, 36, 48, 60, 84, 120],
+    "processingFee": 1.0,
+    "features": ["Study in India", "Moratorium period", "Parent co-applicant"]
+  },
+  {
+    "id": "OFFER008",
+    "loanType": "Education",
+    "minAmount": 500000,
+    "maxAmount": 7500000,
+    "interestRate": 9.0,
+    "tenure": [60, 84, 120, 180],
+    "processingFee": 0.5,
+    "features": ["Study abroad", "Cover full expenses", "Flexible repayment"]
+  },
+  {
+    "id": "OFFER009",
+    "loanType": "Business",
+    "minAmount": 100000,
+    "maxAmount": 5000000,
+    "interestRate": 11.0,
+    "tenure": [12, 24, 36, 48, 60],
+    "processingFee": 2.0,
+    "features": ["Working capital", "Quick disbursal", "Collateral-free up to 10L"]
+  },
+  {
+    "id": "OFFER010",
+    "loanType": "Business",
+    "minAmount": 1000000,
+    "maxAmount": 50000000,
+    "interestRate": 10.5,
+    "tenure": [36, 48, 60, 84, 120],
+    "processingFee": 1.5,
+    "features": ["Business expansion", "Machinery purchase", "Balance transfer"]
+  },
+  {
+    "id": "OFFER011",
+    "loanType": "Gold",
+    "minAmount": 25000,
+    "maxAmount": 1000000,
+    "interestRate": 7.5,
+    "tenure": [6, 12, 18, 24, 36],
+    "processingFee": 0.5,
+    "features": ["Instant disbursal", "Secure storage", "Partial payment allowed"]
+  },
+  {
+    "id": "OFFER012",
+    "loanType": "Gold",
+    "minAmount": 100000,
+    "maxAmount": 5000000,
+    "interestRate": 7.0,
+    "tenure": [12, 24, 36],
+    "processingFee": 0.25,
+    "features": ["High value loans", "Overdraft facility", "Insurance included"]
   }
 ]

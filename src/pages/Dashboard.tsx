@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { getStoredUser, clearUser, User } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogOut, MessageSquare, TrendingUp, CreditCard, Calendar, IndianRupee } from "lucide-react";
+import { LogOut, MessageSquare, TrendingUp, CreditCard, Calendar, IndianRupee, Bell, PieChart } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { PaymentModal } from "@/components/PaymentModal";
 import customersData from "@/data/customers.json";
 import loansData from "@/data/loans.json";
 import creditScoresData from "@/data/credit_scores.json";
@@ -15,6 +18,7 @@ const Dashboard = () => {
   const [customerData, setCustomerData] = useState<any>(null);
   const [creditScore, setCreditScore] = useState<any>(null);
   const [activeLoans, setActiveLoans] = useState<any[]>([]);
+  const [showPayment, setShowPayment] = useState(false);
 
   useEffect(() => {
     const storedUser = getStoredUser();
@@ -160,38 +164,112 @@ const Dashboard = () => {
                 <p className="text-xs text-muted-foreground">
                   {activeLoans.length > 0 ? activeLoans[0].nextEmiDate : "No dues"}
                 </p>
+                {activeLoans.length > 0 && (
+                  <Button 
+                    className="w-full mt-3" 
+                    size="sm"
+                    onClick={() => setShowPayment(true)}
+                  >
+                    Pay Now
+                  </Button>
+                )}
               </CardContent>
             </Card>
           </motion.div>
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-card to-secondary/10 overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 animate-shimmer" 
-                 style={{ backgroundSize: "200% 100%" }} />
-            <CardHeader>
-              <CardTitle className="text-2xl">Need a loan?</CardTitle>
-              <CardDescription>
-                Get instant approval with our AI-powered loan assistant
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button
-                onClick={() => navigate("/apply")}
-                size="lg"
-                className="rounded-xl gap-2 animate-pulse-glow"
-              >
-                <MessageSquare className="w-5 h-5" />
-                Apply via AI Assistant
-              </Button>
-            </CardContent>
-          </Card>
-        </motion.div>
+        {/* Row 2 - Apply, Notifications, Portfolio */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div variants={cardVariants} initial="hidden" animate="visible">
+            <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer border-primary/20 h-full">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageSquare className="w-6 h-6 text-primary" />
+                  AI Loan Assistant
+                </CardTitle>
+                <CardDescription>Get personalized loan offers instantly</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link to="/apply">
+                  <Button className="w-full" size="lg">
+                    Apply via AI Assistant
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={cardVariants} initial="hidden" animate="visible">
+            <Card className="hover:shadow-lg transition-all duration-300 border-primary/20 h-full">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Bell className="w-6 h-6 text-primary" />
+                  Notifications
+                  <Badge variant="destructive" className="ml-auto">3</Badge>
+                </CardTitle>
+                <CardDescription>Recent alerts and updates</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">EMI Due in 5 days</p>
+                    <p className="text-xs text-muted-foreground">₹8,500 for Personal Loan</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg">
+                  <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Pre-approved limit increased</p>
+                    <p className="text-xs text-muted-foreground">New limit: ₹5,00,000</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg">
+                  <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Credit score updated</p>
+                    <p className="text-xs text-muted-foreground">Your score improved by 15 points</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={cardVariants} initial="hidden" animate="visible">
+            <Card className="hover:shadow-lg transition-all duration-300 border-primary/20 h-full">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <PieChart className="w-6 h-6 text-primary" />
+                  Loan Portfolio
+                </CardTitle>
+                <CardDescription>Your active loans breakdown</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span>Personal Loan</span>
+                    <span className="font-semibold">₹2,00,000</span>
+                  </div>
+                  <Progress value={65} className="h-2" />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span>Home Loan</span>
+                    <span className="font-semibold">₹25,00,000</span>
+                  </div>
+                  <Progress value={85} className="h-2" />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span>Auto Loan</span>
+                    <span className="font-semibold">₹5,00,000</span>
+                  </div>
+                  <Progress value={40} className="h-2" />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
 
         {/* Active Loans */}
         {activeLoans.length > 0 && (
@@ -235,6 +313,13 @@ const Dashboard = () => {
           </motion.div>
         )}
       </main>
+
+      <PaymentModal 
+        open={showPayment}
+        onClose={() => setShowPayment(false)}
+        amount={8500}
+        loanId="LOAN-001"
+      />
     </div>
   );
 };

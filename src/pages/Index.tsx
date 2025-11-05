@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { IndianRupee, Shield, Zap, TrendingUp } from "lucide-react";
 
 const Index = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/5">
       {/* Header */}
@@ -20,9 +18,11 @@ const Index = () => {
               <p className="text-xs text-muted-foreground">AI-Powered Finance</p>
             </div>
           </div>
-          <Button onClick={() => navigate("/login")} className="rounded-xl">
-            Login
-          </Button>
+          <Link to="/login">
+            <Button className="rounded-xl">
+              Login
+            </Button>
+          </Link>
         </div>
       </header>
 
@@ -53,13 +53,14 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button
-              onClick={() => navigate("/login")}
-              size="lg"
-              className="rounded-xl text-lg h-14 px-8"
-            >
-              Get Started Now
-            </Button>
+            <Link to="/login">
+              <Button
+                size="lg"
+                className="rounded-xl text-lg h-14 px-8"
+              >
+                Get Started Now
+              </Button>
+            </Link>
             <Button
               variant="outline"
               size="lg"
