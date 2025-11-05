@@ -1,0 +1,32 @@
+[
+  {
+    "id": "OFFER001",
+    "loanType": "Personal",
+    "minAmount": 50000,
+    "maxAmount": 500000,
+    "interestRate": 10.5,
+    "tenure": [12, 24, 36, 48, 60],
+    "processingFee": 2,
+    "features": ["Quick approval", "Minimal documentation", "Flexible tenure"]
+  },
+  {
+    "id": "OFFER002",
+    "loanType": "Personal",
+    "minAmount": 100000,
+    "maxAmount": 1000000,
+    "interestRate": 11.5,
+    "tenure": [12, 24, 36, 48, 60, 72],
+    "processingFee": 1.5,
+    "features": ["Higher amount", "Lower processing fee", "Extended tenure"]
+  },
+  {
+    "id": "OFFER003",
+    "loanType": "Home",
+    "minAmount": 500000,
+    "maxAmount": 10000000,
+    "interestRate": 8.5,
+    "tenure": [120, 180, 240, 300, 360],
+    "processingFee": 0.5,
+    "features": ["Low interest rate", "Tax benefits", "Long tenure"]
+  }
+]

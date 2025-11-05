@@ -1,0 +1,18 @@
+[
+  {
+    "id": "CUST001",
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "phone": "+91-9876543210",
+    "pan": "ABCDE1234F",
+    "aadhaar": "XXXX-XXXX-5678",
+    "dob": "1990-05-15",
+    "city": "Mumbai",
+    "address": "123 Marine Drive, Mumbai, Maharashtra 400020",
+    "preApprovedLimit": 500000,
+    "employmentType": "Salaried",
+    "monthlyIncome": 75000,
+    "kycCompleted": true,
+    "faceKycVerified": true
+  }
+]

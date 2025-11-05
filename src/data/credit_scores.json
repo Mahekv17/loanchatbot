@@ -1,0 +1,14 @@
+[
+  {
+    "customerId": "CUST001",
+    "score": 745,
+    "maxScore": 900,
+    "rating": "Good",
+    "factors": [
+      "Payment history is excellent",
+      "Credit utilization is low",
+      "Good mix of credit types"
+    ],
+    "lastUpdated": "2025-01-15"
+  }
+]

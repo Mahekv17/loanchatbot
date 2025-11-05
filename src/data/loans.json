@@ -1,0 +1,15 @@
+[
+  {
+    "id": "LOAN001",
+    "customerId": "CUST001",
+    "type": "Personal",
+    "amount": 300000,
+    "tenure": 36,
+    "interestRate": 10.5,
+    "emi": 9745,
+    "status": "Active",
+    "disbursedDate": "2024-06-15",
+    "nextEmiDate": "2025-02-05",
+    "outstandingAmount": 245000
+  }
+]
