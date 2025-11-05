@@ -8,115 +8,327 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 50% 98%;
-    --foreground: 220 40% 15%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 220 40% 15%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 40% 15%;
-
-    --primary: 207 90% 61%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 186 72% 56%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 210 40% 96%;
+    /* Theme essence: Futuristic fintech (HSL tokens) */
+    --primary: 217 92% 60%;        /* sky blue (approx #3B82F6) */
+    --secondary: 271 83% 62%;      /* violet (approx #8B5CF6) */
+    --background: 210 50% 98%;     /* light page bg */
+    --background-dark: 212 20% 6%;  /* dark page bg */
+    --card: 0 0% 100%;             /* card base (will use alpha) */
+    --card-dark: 220 18% 10%;      /* dark card */
+    --foreground: 220 12% 5%;
     --muted-foreground: 215 16% 47%;
-
-    --accent: 186 72% 56%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
     --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 207 90% 61%;
-
-    --radius: 1.125rem;
-    
-    /* Custom tokens for fintech design */
-    --gradient-primary: linear-gradient(135deg, hsl(207 90% 61%), hsl(186 72% 56%));
-    --gradient-subtle: linear-gradient(180deg, hsl(210 50% 98%), hsl(0 0% 100%));
-    --gradient-card: linear-gradient(135deg, hsl(207 90% 61% / 0.1), hsl(186 72% 56% / 0.1));
-    
-    --shadow-soft: 0 4px 20px hsl(207 90% 61% / 0.15);
-    --shadow-glow: 0 0 30px hsl(207 90% 61% / 0.3);
-    
-    --success: 142 76% 36%;
-    --warning: 38 92% 50%;
-    
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 18px;
+    --glass-blur: 20px;
+    --container-max: 1200px;
   }
 
   .dark {
-    --background: 220 40% 8%;
-    --foreground: 210 40% 98%;
-
-    --card: 220 35% 12%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 220 35% 12%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 207 90% 61%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 186 72% 56%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 220 30% 18%;
+    --background: var(--background-dark);
+    --card: var(--card-dark);
+    --foreground: 210 40% 96%;
     --muted-foreground: 215 20% 65%;
-
-    --accent: 186 72% 56%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 30% 18%;
-    --input: 220 30% 18%;
-    --ring: 207 90% 61%;
-    
-    --gradient-primary: linear-gradient(135deg, hsl(207 90% 61%), hsl(186 72% 56%));
-    --gradient-subtle: linear-gradient(180deg, hsl(220 40% 8%), hsl(220 35% 12%));
-    --gradient-card: linear-gradient(135deg, hsl(207 90% 61% / 0.2), hsl(186 72% 56% / 0.2));
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
+/* keep base layer rules */
 @layer base {
-  * {
-    @apply border-border;
+  body { @apply bg-background text-foreground; }
+}
+
+/* Add font & subtle base scale for the visual DNA */
+@layer base {
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+  html { font-family: "Poppins", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+  :root {
+    /* Updated primary gradient (deep indigo → lilac) */
+    --primary-start: 220 60% 45%; /* ~#4F46E5 */
+    --primary-end: 271 83% 62%;   /* ~#8B5CF6 */
+
+    /* Accents */
+    --accent-success: 154 72% 40%; /* emerald #10B981 */
+    --accent-gold: 48 96% 58%;     /* gold #FACC15 */
+
+    --radius: 20px;       /* consistent 20px radius across UI */
+    --glass-blur: 18px;
+    --shadow-glow: 0 18px 40px rgba(59,92,230,0.12);
+
+    /* Added tokens for chat UI */
+    --bubble-radius: 14px;
+    --cta-glow: 0 12px 30px rgba(79,70,229,0.12);
+    --chat-max-width: 920px;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  .dark {
+    --background: 220 14% 6%;
+    --card: 220 18% 10%;
+    --foreground: 210 40% 96%;
   }
+}
+
+/* Components & utilities */
+@layer components {
+  /* glass card: translucent with stronger blur and subtle border */
+  .glass-card {
+    @apply rounded-[var(--radius)];
+    background: color-mix(in srgb, hsl(var(--card)) 86%, transparent);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--border) / 0.06);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* soft elevation used for floating cards */
+  .soft-elevate {
+    box-shadow: 0 18px 48px rgba(2,6,23,0.12), 0 2px 8px rgba(2,6,23,0.06);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+  .soft-elevate:hover { transform: translateY(-4px) scale(1.01); }
+
+  /* Primary gradient helper */
+  .gradient-primary {
+    background: linear-gradient(90deg, hsl(var(--primary-start)), hsl(var(--primary-end)));
+  }
+
+  /* vertical accent bar for popups */
+  .accent-bar-vertical {
+    width: 6px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--secondary)));
+    box-shadow: 0 8px 30px rgba(59,130,246,0.12);
+  }
+
+  /* CTA button */
+  .btn-cta {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium text-white;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
+    box-shadow: 0 8px 30px rgba(59,130,246,0.12);
+    transition: transform 160ms ease, filter 160ms ease;
+  }
+  .btn-cta:hover { transform: translateY(-3px) scale(1.02); filter: brightness(1.02); }
+
+  /* Chat hero surface & layout */
+  .chat-hero {
+    @apply min-h-screen flex items-center justify-center p-6;
+    background: linear-gradient(120deg, color-mix(in srgb, hsl(var(--background)) 93%, hsl(var(--primary)) 3%), color-mix(in srgb, hsl(var(--background)) 92%, hsl(var(--secondary)) 3%));
+  }
+
+  .chat-container {
+    width: 100%;
+    max-width: var(--chat-max-width);
+    border-radius: calc(var(--radius));
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: min(88vh, 980px);
+    background: linear-gradient(180deg, color-mix(in srgb, hsl(var(--card)) 88%, transparent), rgba(255,255,255,0.02));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid hsl(var(--border) / 0.06);
+    box-shadow: 0 18px 50px rgba(2,6,23,0.10);
+  }
+
+  .chat-header {
+    @apply px-6 py-4 flex items-center gap-4;
+    border-bottom: 1px solid hsl(var(--border) / 0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  }
+
+  .chat-messages {
+    @apply overflow-y-auto p-6;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Bubbles */
+  .chat-bubble {
+    border-radius: var(--bubble-radius, 12px);
+    padding: 12px 14px;
+    max-width: 85%;
+    line-height:1.45;
+  }
+
+  .chat-bubble.bot {
+    background: color-mix(in srgb, hsl(var(--card)) 92%, transparent);
+    border: 1px solid hsl(var(--border) / 0.06);
+    color: hsl(var(--foreground));
+    box-shadow: 0 6px 22px rgba(2,6,23,0.06);
+  }
+
+  .chat-bubble.user {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
+    color: white;
+    box-shadow: var(--cta-glow, 0 12px 30px rgba(79,70,229,0.10));
+  }
+
+  .chat-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:600;
+    color: white;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    box-shadow: 0 6px 18px rgba(59,130,246,0.12);
+  }
+
+  .chat-meta { font-size: 12px; color: hsl(var(--muted-foreground)); margin-top: 6px; }
+
+  /* Input area */
+  .chat-input {
+    @apply px-6 py-4 border-t border-border flex items-center gap-3;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  }
+
+  .chat-input .input {
+    @apply flex-1 bg-transparent h-12 rounded-xl px-4 outline-none;
+  }
+
+  .btn-cta-lg {
+    @apply inline-flex items-center justify-center text-white px-5 py-3 rounded-xl;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
+    box-shadow: var(--cta-glow);
+    transition: transform 200ms ease, filter 200ms ease;
+  }
+  .btn-cta-lg:hover { transform: translateY(-3px); filter: brightness(1.03); }
+
+  /* typing dots */
+  .typing {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .typing span {
+    width: 6px;
+    height: 6px;
+    background: hsl(var(--primary));
+    border-radius: 999px;
+    display: inline-block;
+    opacity: 0.85;
+    transform: translateY(0);
+    animation: bounce-slow 1.2s infinite ease-in-out;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.15s; }
+  .typing span:nth-child(3) { animation-delay: 0.3s; }
+
+  /* progress shimmer */
+  .progress-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+  @keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+
+  /* float slow */
+  @keyframes float-slow { 0% {transform: translateY(0)} 50% {transform: translateY(-6px)} 100% {transform: translateY(0)} }
+  .float-slow { animation: float-slow 4s ease-in-out infinite; }
+
+  /* subtle entrance */
+  @keyframes card-in { from { opacity: 0; transform: translateY(8px) scale(.99) } to { opacity:1; transform: translateY(0) scale(1) } }
+  .card-in { animation: card-in 360ms cubic-bezier(.16,.84,.3,1) both; }
+
+  /* Agent avatar (subtle idle blink & float) */
+  .agent-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, hsl(var(--primary-start)), hsl(var(--primary-end)));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 8px 26px rgba(75,85,255,0.14);
+    transform-origin: center;
+    animation: float-vertical 4s ease-in-out infinite;
+  }
+  @keyframes float-vertical { 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+
+  /* micro blink (scale Y very slightly) */
+  .avatar-blink { animation: blink-anim 6s infinite; }
+  @keyframes blink-anim { 0%,95%{transform:scaleY(1)}97%{transform:scaleY(0.95)}100%{transform:scaleY(1)} }
+
+  /* Offer carousel */
+  .offer-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 12px;
+    scroll-snap-type: x mandatory;
+  }
+  .offer-card {
+    scroll-snap-align: center;
+    min-width: 260px;
+    max-width: 320px;
+    padding: 16px;
+    border-radius: calc(var(--radius) - 2px);
+    border: 1px solid hsl(var(--border) / 0.06);
+    background: color-mix(in srgb, hsl(var(--card)) 90%, transparent);
+    box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+    transition: transform 240ms ease, box-shadow 240ms ease;
+  }
+  .offer-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 60px rgba(75,85,255,0.14); }
+  .offer-card .tag { @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium; background: rgba(16,185,129,0.08); color: hsl(var(--accent-success)); }
+
+  /* Sanction / success card */
+  .sanction-card {
+    @apply rounded-2xl p-6 glass-card;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Typing dots (used in chat) */
+  .typing-dots { display: inline-flex; gap:6px; align-items:center; }
+  .typing-dots span { width:6px; height:6px; background: hsl(var(--primary-end)); border-radius:999px; animation: dot-bounce 1s infinite; }
+  .typing-dots span:nth-child(2) { animation-delay: 0.12s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.24s; }
+  @keyframes dot-bounce { 0%{transform:translateY(0);opacity:.6}50%{transform:translateY(-6px);opacity:1}100%{transform:translateY(0);opacity:.6} }
+
+  /* small utility: gradient progress bar */
+  .grad-progress { background: linear-gradient(90deg, hsl(var(--primary-start)), hsl(var(--primary-end))); height:100%; }
+
+  /* quick-chip styles used in greeting chips */
+  .quick-chip {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full border border-border bg-card/30;
+    min-width: 96px;        /* avoid collapse for single-token labels */
+    white-space: nowrap;    /* keep number together */
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+  .quick-chip:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(59,92,230,0.08); background: color-mix(in srgb, hsl(var(--card)) 94%, hsl(var(--primary)) 3%); }
+
+  /* remove prior split-icon assumptions — single content element now */
+  .chip-content {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+  }
+
+  .chip-icon { /* keep for backward-compat if used elsewhere */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    transition: transform 200ms ease, filter 200ms ease;
+  }
+  .quick-chip:hover .chip-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 6px 16px rgba(59,92,230,0.12));
+  }
+}
+
+/* layout utilities */
+@layer utilities {
+  .container-max { max-width: var(--container-max); margin: 0 auto; padding: 24px; }
+  .centered { display:flex; align-items:center; justify-content:center; }
 }
